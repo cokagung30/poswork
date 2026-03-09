@@ -12,6 +12,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^9.1.1
+  flutter_gen: ^5.13.0
   flutter_localizations:
     sdk: flutter
   intl: ^0.20.2
@@ -25,6 +26,41 @@ dev_dependencies:
   mocktail: ^1.0.4
   very_good_analysis: ^10.2.0
 
+flutter_gen:
+  output: lib/gen/
+  line_length: 80
+
+  integrations:
+    flutter_svg: true
+  fonts:
+    enabled: true
+  assets:
+    enabled: true
+    outputs:
+      package_parameter_enabled: true
+  colors:
+    inputs:
+      - assets/colors/colors.xml
+
 flutter:
-  generate: true
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-ExtraBold.ttf
+          weight: 800
+        - asset: assets/fonts/Poppins-Black.ttf
+          weight: 900
