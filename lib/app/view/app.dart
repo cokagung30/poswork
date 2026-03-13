@@ -1,7 +1,5 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:poswork/core/router/app_router.dart';
 import 'package:poswork/core/theme/theme.dart';
@@ -23,20 +21,6 @@ class _AppView extends StatefulWidget {
 }
 
 class __AppViewState extends State<_AppView> {
-  @override
-  Future<void> initState() async {
-    super.initState();
-
-    if (kReleaseMode) {
-      await SystemChrome.setPreferredOrientations([
-        DeviceOrientation.landscapeRight,
-        DeviceOrientation.landscapeLeft,
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
