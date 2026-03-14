@@ -143,7 +143,9 @@ class _EnterButton extends StatelessWidget {
       width: 80,
       height: 60,
       child: Material(
-        color: ColorName.blue,
+        color: onPressed != null
+            ? ColorName.blue
+            : ColorName.blue.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(12),
         elevation: 1,
         shadowColor: Colors.black12,

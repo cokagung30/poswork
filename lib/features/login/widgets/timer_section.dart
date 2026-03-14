@@ -20,7 +20,7 @@ class TimerSection extends StatelessWidget {
         Text(
           Jiffy.parse(
             (currentTime ?? DateTime.now()).toLocal().toIso8601String(),
-          ).format(pattern: 'H:m:s'),
+          ).format(pattern: 'HH:mm:ss'),
           style: textTheme.titleLarge?.copyWith(
             color: ColorName.blue,
           ),

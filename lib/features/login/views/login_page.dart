@@ -75,16 +75,7 @@ class _LoginView extends StatelessWidget {
                         const Gap(18),
                         const PinInput(),
                         const Gap(18),
-                        CustomNumberPad(
-                          onNumberPressed: (value) {
-                            final event = PinChanged(value);
-                            context.read<LoginBloc>().add(event);
-                          },
-                          onDeletePressed: () {
-                            context.read<LoginBloc>().add(const PinRemoved());
-                          },
-                          onEnterPressed: () {},
-                        ),
+                        const NumPadSection(),
                       ],
                     ),
                   ),
