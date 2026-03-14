@@ -1,14 +1,19 @@
 part of 'login_bloc.dart';
 
 class LoginState extends Equatable {
-  const LoginState({this.currentTime});
+  const LoginState({this.currentTime, this.pin = ''});
 
   final DateTime? currentTime;
 
-  LoginState copyWith({DateTime? currentTime}) {
-    return LoginState(currentTime: currentTime);
+  final String pin;
+
+  LoginState copyWith({DateTime? currentTime, String? pin}) {
+    return LoginState(
+      currentTime: currentTime ?? this.currentTime,
+      pin: pin ?? this.pin,
+    );
   }
 
   @override
-  List<Object?> get props => [currentTime];
+  List<Object?> get props => [currentTime, pin];
 }

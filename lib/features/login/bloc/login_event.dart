@@ -15,3 +15,16 @@ class ClockUpdated extends LoginEvent {
   @override
   List<Object?> get props => [time];
 }
+
+class PinChanged extends LoginEvent {
+  const PinChanged(this.pin);
+
+  final num pin;
+
+  @override
+  List<Object?> get props => [pin];
+}
+
+class PinRemoved extends LoginEvent {
+  const PinRemoved();
+}
