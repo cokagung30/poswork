@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
 import 'package:poswork/core/widgets/widgets.dart';
-import 'package:poswork/features/main/bloc/main_bloc.dart';
 import 'package:poswork/features/main/main.dart';
 import 'package:poswork/gen/assets.gen.dart';
 
