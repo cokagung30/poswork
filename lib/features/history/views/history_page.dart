@@ -1,0 +1,21 @@
+import 'package:flutter/material.dart';
+
+class HistoryPage extends StatelessWidget {
+  const HistoryPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const _HistoryView();
+  }
+}
+
+class _HistoryView extends StatelessWidget {
+  const _HistoryView();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Text('History'),
+    );
+  }
+}
