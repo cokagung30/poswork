@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
+import 'package:poswork/core/router/app_router.dart';
 import 'package:poswork/core/widgets/widgets.dart';
 import 'package:poswork/features/login/login.dart';
 
@@ -18,7 +20,11 @@ class NumPadSection extends StatelessWidget {
       onDeletePressed: () {
         context.read<LoginBloc>().add(const PinRemoved());
       },
-      onEnterPressed: (pin.length < 4) ? null : () {},
+      onEnterPressed: (pin.length < 4)
+          ? null
+          : () async {
+              await context.pushNamed(AppRouterName.openingBalance);
+            },
     );
   }
 }

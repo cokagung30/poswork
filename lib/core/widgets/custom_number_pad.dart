@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:poswork/core/widgets/condition_widget.dart';
 import 'package:poswork/gen/assets.gen.dart';
 import 'package:poswork/gen/colors.gen.dart';
 import 'package:poswork/utils/utils.dart';
@@ -9,28 +10,34 @@ class CustomNumberPad extends StatelessWidget {
     this.onNumberPressed,
     this.onDeletePressed,
     this.onEnterPressed,
+    this.horizontalSpacing = 16,
+    this.verticalSpacing = 8,
+    this.isEnterButton = true,
   });
 
   final ValueChanged<int>? onNumberPressed;
   final VoidCallback? onDeletePressed;
   final VoidCallback? onEnterPressed;
 
+  final num verticalSpacing;
+
+  final num horizontalSpacing;
+
+  final bool isEnterButton;
+
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width * 0.8;
-
     return Center(
       child: SizedBox(
-        width: screenWidth,
         child: Column(
-          spacing: 8,
+          spacing: verticalSpacing.toDouble(),
           mainAxisSize: MainAxisSize.min,
           children: [
             for (var row = 0; row < 4; row++)
               Padding(
                 padding: EdgeInsets.only(bottom: row < 3 ? 8 : 0),
                 child: Row(
-                  spacing: 16,
+                  spacing: horizontalSpacing.toDouble(),
                   mainAxisSize: MainAxisSize.min,
                   children: _buildRow(row),
                 ),
@@ -66,7 +73,11 @@ class CustomNumberPad extends StatelessWidget {
         onPressed: onNumberPressed,
       ),
       const SizedBox(width: 8),
-      _EnterButton(onPressed: onEnterPressed),
+      ConditionWidget(
+        isFirstCondition: isEnterButton,
+        firstChild: _EnterButton(onPressed: onEnterPressed),
+        secondChild: _ClearButton(onPressed: onEnterPressed),
+      ),
     ];
   }
 }
@@ -160,6 +171,42 @@ class _EnterButton extends StatelessWidget {
               colorFilter: const ColorFilter.mode(
                 ColorName.white,
                 BlendMode.srcIn,
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class _ClearButton extends StatelessWidget {
+  const _ClearButton({this.onPressed});
+
+  final VoidCallback? onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    final textTheme = context.textTheme;
+
+    return SizedBox(
+      width: 80,
+      height: 60,
+      child: Material(
+        color: ColorName.blueLight,
+        borderRadius: BorderRadius.circular(12),
+        elevation: 1,
+        shadowColor: Colors.black12,
+        child: InkWell(
+          borderRadius: BorderRadius.circular(12),
+          onTap: onPressed,
+          child: Center(
+            child: Text(
+              'C',
+              style: textTheme.titleLarge?.copyWith(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+                color: ColorName.blue,
               ),
             ),
           ),

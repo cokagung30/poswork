@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:poswork/core/widgets/custom_app_bar.dart';
 import 'package:poswork/core/widgets/widgets.dart';
 import 'package:poswork/features/login/login.dart';
 import 'package:poswork/gen/assets.gen.dart';
