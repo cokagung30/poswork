@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "778964497440",
+    "project_id": "poswork-dev",
+    "storage_bucket": "poswork-dev.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:778964497440:android:6f525c750da4766f3ff845",
+        "android_client_info": {
+          "package_name": "com.baliwork.pos.dev"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC1kry7z3JFbANn8JhI-6XMrDGGSuocIVQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

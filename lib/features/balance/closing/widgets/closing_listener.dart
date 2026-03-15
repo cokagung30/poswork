@@ -6,16 +6,16 @@ import 'package:go_router/go_router.dart';
 import 'package:poswork/core/router/app_router.dart';
 import 'package:poswork/core/widgets/widgets.dart';
 import 'package:poswork/data/models/models.dart';
-import 'package:poswork/features/balance/opening/opening_balance.dart';
+import 'package:poswork/features/balance/closing/closing.dart';
 
-class ConfrimBalanceListener extends StatelessWidget {
-  const ConfrimBalanceListener({required this.child, super.key});
+class ClosingListener extends StatelessWidget {
+  const ClosingListener({required this.child, super.key});
 
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<OpeningBalanceBloc, OpeningBalanceState>(
+    return BlocListener<ClosingBloc, ClosingState>(
       listenWhen: (p, c) => p.submitStatus != c.submitStatus,
       listener: (context, state) {
         if (state.submitStatus.isLoading) {
@@ -26,7 +26,7 @@ class ConfrimBalanceListener extends StatelessWidget {
         if (state.submitStatus.isSuccess) {
           context
             ..pop()
-            ..goNamed(AppRouterName.cashier);
+            ..goNamed(AppRouterName.login);
         }
       },
       child: child,

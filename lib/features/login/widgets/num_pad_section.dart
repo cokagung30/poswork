@@ -22,8 +22,8 @@ class NumPadSection extends StatelessWidget {
       },
       onEnterPressed: (pin.length < 4)
           ? null
-          : () async {
-              await context.pushNamed(AppRouterName.openingBalance);
+          : () {
+              context.goNamed(AppRouterName.openingBalance);
             },
     );
   }

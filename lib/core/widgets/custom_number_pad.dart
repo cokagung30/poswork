@@ -13,17 +13,18 @@ class CustomNumberPad extends StatelessWidget {
     this.horizontalSpacing = 16,
     this.verticalSpacing = 8,
     this.isEnterButton = true,
+    this.keyHeight = 60,
+    this.backgroundColorEnterKey = ColorName.blueLight,
   });
 
   final ValueChanged<int>? onNumberPressed;
   final VoidCallback? onDeletePressed;
   final VoidCallback? onEnterPressed;
-
   final num verticalSpacing;
-
   final num horizontalSpacing;
-
+  final num keyHeight;
   final bool isEnterButton;
+  final Color backgroundColorEnterKey;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +56,7 @@ class CustomNumberPad extends StatelessWidget {
           if (col > 0) const SizedBox(width: 8),
           _NumberButton(
             number: row * 3 + col + 1,
+            keyHeight: keyHeight,
             onPressed: onNumberPressed,
           ),
         ],
@@ -65,18 +67,27 @@ class CustomNumberPad extends StatelessWidget {
     return [
       _IconButton(
         icon: Assets.icons.icDelete,
+        keyHeight: keyHeight,
         onPressed: onDeletePressed,
       ),
       const SizedBox(width: 8),
       _NumberButton(
         number: 0,
         onPressed: onNumberPressed,
+        keyHeight: keyHeight,
       ),
       const SizedBox(width: 8),
       ConditionWidget(
         isFirstCondition: isEnterButton,
-        firstChild: _EnterButton(onPressed: onEnterPressed),
-        secondChild: _ClearButton(onPressed: onEnterPressed),
+        firstChild: _EnterButton(
+          keyHeight: keyHeight,
+          onPressed: onEnterPressed,
+        ),
+        secondChild: _ClearButton(
+          keyHeight: keyHeight,
+          backgroundColorEnterKey: backgroundColorEnterKey,
+          onPressed: onEnterPressed,
+        ),
       ),
     ];
   }
@@ -85,10 +96,12 @@ class CustomNumberPad extends StatelessWidget {
 class _NumberButton extends StatelessWidget {
   const _NumberButton({
     required this.number,
+    required this.keyHeight,
     this.onPressed,
   });
 
   final int number;
+  final num keyHeight;
   final ValueChanged<int>? onPressed;
 
   @override
@@ -97,7 +110,7 @@ class _NumberButton extends StatelessWidget {
 
     return SizedBox(
       width: 80,
-      height: 60,
+      height: keyHeight.toDouble(),
       child: Material(
         color: ColorName.white,
         borderRadius: BorderRadius.circular(12),
@@ -121,17 +134,19 @@ class _NumberButton extends StatelessWidget {
 class _IconButton extends StatelessWidget {
   const _IconButton({
     required this.icon,
+    required this.keyHeight,
     this.onPressed,
   });
 
   final SvgGenImage icon;
+  final num keyHeight;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 80,
-      height: 60,
+      height: keyHeight.toDouble(),
       child: InkWell(
         borderRadius: BorderRadius.circular(12),
         onTap: onPressed,
@@ -144,22 +159,21 @@ class _IconButton extends StatelessWidget {
 }
 
 class _EnterButton extends StatelessWidget {
-  const _EnterButton({this.onPressed});
+  const _EnterButton({required this.keyHeight, this.onPressed});
 
+  final num keyHeight;
   final VoidCallback? onPressed;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 80,
-      height: 60,
+      height: keyHeight.toDouble(),
       child: Material(
         color: onPressed != null
             ? ColorName.blue
             : ColorName.blue.withValues(alpha: 0.5),
         borderRadius: BorderRadius.circular(12),
-        elevation: 1,
-        shadowColor: Colors.black12,
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
           splashColor: Colors.transparent,
@@ -181,9 +195,15 @@ class _EnterButton extends StatelessWidget {
 }
 
 class _ClearButton extends StatelessWidget {
-  const _ClearButton({this.onPressed});
+  const _ClearButton({
+    required this.keyHeight,
+    required this.backgroundColorEnterKey,
+    this.onPressed,
+  });
 
+  final num keyHeight;
   final VoidCallback? onPressed;
+  final Color backgroundColorEnterKey;
 
   @override
   Widget build(BuildContext context) {
@@ -191,14 +211,15 @@ class _ClearButton extends StatelessWidget {
 
     return SizedBox(
       width: 80,
-      height: 60,
+      height: keyHeight.toDouble(),
       child: Material(
-        color: ColorName.blueLight,
+        color: backgroundColorEnterKey,
         borderRadius: BorderRadius.circular(12),
-        elevation: 1,
-        shadowColor: Colors.black12,
+        // elevation: 1,
+        // shadowColor: Colors.black12,
         child: InkWell(
           borderRadius: BorderRadius.circular(12),
+          splashColor: Colors.transparent,
           onTap: onPressed,
           child: Center(
             child: Text(

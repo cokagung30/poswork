@@ -207,11 +207,12 @@ class AppButton extends StatelessWidget {
             ),
           ),
           backgroundColor: WidgetStateProperty.resolveWith((states) {
+            final color = backgroundColor ?? ColorName.blue;
             if (states.contains(WidgetState.disabled)) {
-              return ColorName.blue.withValues(alpha: 0.8);
+              return color.withValues(alpha: 0.8);
             }
 
-            return backgroundColor ?? ColorName.blue;
+            return color;
           }),
         );
 
